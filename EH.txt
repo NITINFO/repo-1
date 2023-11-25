@@ -1,0 +1,116 @@
+1)try
+2)catch
+3)throw
+4)throws
+5)finally
+
+throw :to throw the exception manually.specially in case of user defined exceptions.
+try
+{
+ -------------;
+ -----throw obj;--------;
+ -------------;
+}catch(Exception ex)
+{
+
+}
+//handling user defined exceptions using throw keyword.
+import java.lang.*;
+import java.util.*;
+
+class ATM{
+  private int pin=1213;
+  public void Check()
+  {
+    try{
+    Scanner ob = new Scanner(System.in);
+    System.out.print("Enter Pin : ");
+    int rpin = ob.nextInt();
+    if(rpin==pin)
+    {
+      System.out.println("Welcome to City Bank.");
+    }else
+    {
+        //System.out.println("Invalid Pin.....!");
+        throw new Exception("Sorry.Your Pin is Incorrect...!");
+    }
+      System.out.println("Some logic is executed....");
+      }catch(Exception ex)
+    {  System.out.println(ex);}
+}
+}
+class ATMDemo
+{
+  public static void main(String[] args)
+  {
+    ATM obj = new ATM();
+
+    obj.Check();
+
+  }
+}
+----------------------------------------------------------
+throws : throws keyword is used to throw the exception before entering into the actual logic.
+
+
+import java.lang.*;
+import java.io.*;
+
+class Ex2
+{
+   public static void main(String[] args)throws IOException
+  {
+
+   BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+   System.out.print("Enter a : ");
+   int a= Integer.parseInt(br.readLine());
+   System.out.println();
+   System.out.print("Enter b : ");
+   int b= Integer.parseInt(br.readLine());
+   System.out.println();
+   }
+}
+
+Note :Compile the above program.
+
+--------------------------------------------------------------
+finally :finally block is going to executed in case of exception and in case of non exception.
+
+Which code you want to execute at any cost.
+
+eg : db connection clossing.
+
+import java.lang.*;
+
+class Ex3
+{
+  public static void main(String[] args)
+  {
+    try{
+         System.out.println("In try block.");
+          int x = 10/2;
+          System.out.println("try ends here.");
+    }catch(Exception ex){  System.out.println("In catch block."); }
+    finally{ System.out.println("In finally block.");}
+  }
+}
+
+-----------------------------------
+1)try block can be defined with catch block or finally block.
+2)in absence of catch block ,if we got any exception in our program,
+program will be terminated after executing the finally block.
+
+import java.lang.*;
+
+class Ex3
+{
+  public static void main(String[] args)
+  {
+    try{
+         System.out.println("In try block.");
+          int x = 10/0;
+          System.out.println("try ends here.");
+    }
+    finally{ System.out.println("In finally block.");}
+  }
+}

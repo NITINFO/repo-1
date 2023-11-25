@@ -1,0 +1,208 @@
+
+//Array of class object
+
+import java.lang.*;
+
+class test{
+   public static void main(String args[]){
+     Account obj[] = new Account[2] ;
+     obj[0] = new Account();
+     obj[1] = new Account();
+    obj[0].setData(1,2);
+    obj[1].setData(3,4);
+    System.out.println("For Array Element 0");
+    obj[0].showData();
+    System.out.println("For Array Element 1");
+     obj[1].showData();
+  }
+}
+class Account{
+  int a;
+  int b;
+ public void setData(int x,int y){
+   a=x;
+   b=y;
+ }
+ public void showData(){
+   System.out.println("Value of a ="+a);
+   System.out.println("Value of b ="+b);
+ }
+}
+
+----------------------------------
+Method overriding :
+
+It is the concept of writing same method name with same parameter list in super and sub class.
+
+super class show() is overriden by sub class show().
+
+import java.lang.*;
+
+class A{
+
+  public void Show(){
+    System.out.println("In super class Show  Method.");
+  }
+}
+class B extends A{
+
+  public void Show(){
+    super.Show();
+    System.out.println("In sub class Show  Method.");
+  }
+}
+class INH4
+{
+
+  public static void main(String[] args)
+  {
+    B ob = new B();
+    ob.Show();
+
+  }
+}
+-----------------------
+super():
+invokes super class constructor.
+it should be writen in sub class constructor.
+import java.lang.*;
+
+class A{
+
+A(int x)
+{
+  System.out.println("In super class Constructor ."+x);
+}
+}
+class B extends A{
+
+  B()
+  {
+    super(10);//invokes super class constructor.
+    System.out.println("In sub class Constructor .");
+  }
+
+}
+//Note : super() should be writen in sub class constructor.
+class INH4
+{
+
+  public static void main(String[] args)
+  {
+    B ob = new B();
+
+
+  }
+}
+
+-------------------------------------
+final keyword :
+it is used to avoid method overriding.
+
+class A{
+
+  public final void Show(){
+    System.out.println("In super class Show  Method.");
+  }
+}
+class B extends A{
+
+  public  void Show(){
+    System.out.println("In sub class Show  Method.");
+  }
+}
+
+Result : we get compilation error.
+
+E:\Java_WS>javac INH4.java
+INH4.java:11: error: Show() in B cannot override Show() in A.
+-------------------------------------------------------------
+final class A{
+
+}
+class B extends A{
+
+
+}
+
+Here final keyword won't allow child class for final class A.
+----------------------------------------------------------------
+protected access specifier:
+
+protected data is similar to private data.
+protected data can be accessed in sub class.
+protected data can't be access at out side of the class with object reference.
+
+import java.lang.*;
+
+ class A{
+public int x=10;
+private int y=20;
+protected int z=30;
+
+}
+class B extends A{
+public void Show()
+{
+  System.out.println("public x from super class : "+x);
+  //System.out.println("private y from super class : "+y);//error
+  System.out.println("protected z from super class : "+z);
+}
+
+}
+class INH4
+{
+
+  public static void main(String[] args)
+  {
+    B ob2 = new B();
+    ob2.Show();
+
+    A ob1 = new A();
+    System.out.println("In main () :");
+    System.out.println("public x from  class A: "+ob1.x);
+    //System.out.println("y from  class A: "+ob1.y);//error
+    System.out.println("protected z from  class A: "+ob1.z);
+
+
+  }
+}
+
+--------------------------------------------------------------
+In general super class objects refers only super class data.
+Requirement : Refer super class object to sub class.
+
+import java.lang.*;
+
+ class A{
+  public void Add1()
+{
+  System.out.println("In super class Add().");
+}
+}
+ class B extends A{
+  public void Add2()
+{
+  System.out.println("In sub class Add().");
+}
+
+}
+class INH4
+{
+
+  public static void main(String[] args)
+  {
+    /*
+        //in old java version
+         A rob;
+         rob = new B();
+         rob.Add1();
+         rob.Add2();
+    */
+
+    A rob;
+    rob = new B();
+    rob.Add1();
+    ((B)rob).Add2();
+  }
+}
